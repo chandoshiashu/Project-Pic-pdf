@@ -235,7 +235,7 @@ int main(){
 
     /// Creating a Linked-List of String Data-Type
 
-        std::string StrArray[] = {"Ashish", "Rajendra", "Poonam", "Ankit", "Nitin"};
+        std::string StrArray[] = {"Ashuuu", "Rajuuu", "Finshil", "Lighis", "Nigilgo"};
         int StrArrSize_ = sizeof(StrArray)/sizeof(StrArray[0]);
 
         LinkedList<std::string> LL2(StrArray, StrArrSize_);
@@ -245,7 +245,7 @@ int main(){
     /// Performing Operations
 
             LL2.Insertion("Nazar", 9);
-            LL2.Insertion("SeaWall", 2);
+            LL2.Insertion("SeaWall", 2);a
 
             LL2.Deletion(3);
             LL2.Deletion(2);
@@ -257,3 +257,4 @@ int main(){
 
     return 0;
 }
+
