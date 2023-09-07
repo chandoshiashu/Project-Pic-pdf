@@ -44,10 +44,9 @@ class Naming{
             } else{Name += Accessor->Prefix;}
         }
 
-        int DigitCount(unsigned int Value){
+        int DigitCount(unsigned long Value){
             int Count = 1;
-            while((Value/(unsigned int)(pow(10, Count))) != 0){
-                //cout<<(Value/(unsigned int)(pow(10, Count)))<<endl;
+            while((Value/(unsigned long)(pow(10, Count))) != 0){
                 Count++;
             }
             return Count;
@@ -62,16 +61,15 @@ class Naming{
         }
 
     public:
-        string IUPAC(unsigned int Value){
+        string IUPAC(unsigned long Value){
             DigitCount(Value);
             Name = "";
             Create_Linked_List();
-            unsigned int Temp = Value;
+            unsigned long Temp = Value;
 
             for(int i=DigitCount(Value); i>0; i--){
-                Access_Node(int(Temp%(unsigned int)(pow(10, i))/(unsigned int)(pow(10, i-1))));
-                //cout<<Name<<endl;
-                Temp = Temp%((unsigned int)(pow(10, i-1)));
+                Access_Node(int(Temp%(unsigned long)(pow(10, i))/(unsigned long)(pow(10, i-1))));
+                Temp = Temp%((unsigned long)(pow(10, i-1)));
             }
 
             if(Value%10 == 2 || Value%10 == 3){
@@ -91,7 +89,7 @@ int main(){
 
 
     Naming N1;
-    unsigned int User_Inp = 1;
+    unsigned long User_Inp = 1;
 
     while(User_Inp != 2){
         if(User_Inp == 1){
