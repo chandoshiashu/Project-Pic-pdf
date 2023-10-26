@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bouncing Balls</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<style type="text/css">
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+.Container{
+	height: 100vh;
+	width: 100vw;
+	background-color: black;
+}
+
+
+
+</style>
+<body>
+	<div class="Container"></div>
+</body>
+<!-- <script type="text/javascript" src="index.js"></script> -->
+<script type="text/javascript">
+	// alert("Welcome you to the Bouncing Ball World");
+
+let Circle_Element = document.getElementById("CircleExp1");
+let Element, Ball_Obj;
+let VelTime = 10;
+let ColorArr = ["red", "blue", "lime", "purple", "pink", "violet", "darkvioletblue"];
+
+const Width = window.innerWidth;
+const Height = window.innerHeight;
+
+// let ElementX = Math.floor(Math.random() * Height);
+// let ElementY = Math.floor(Math.random() * Width);
+// let ElementAction = Math.floor(Math.random() * 4);
+
+class Bouncer{
+	constructor(){
+		this.Ball_Size = Math.random() * 100;
+		this.StepX = Math.random() * 10;
+		this.StepY = Math.random() * 30;
+		this.ElementX = Math.floor(Math.random() * Height);
+		this.ElementY = Math.floor(Math.random() * Width);
+		this.ElementAction = Math.floor(Math.random() * 4);
+		this.ElementColor = ColorArr[Math.floor(Math.random() * (ColorArr.length-1))];
+	}
+
+	Bounce(){this.DrawBall(); this.MoveBall();}
+
+	DrawBall(){
+		this.Element = document.createElement('DIV');
+		this.Element.style.height = this.Ball_Size+"px";
+		this.Element.style.width = (this.Ball_Size)+"px";
+		this.Element.style.borderRadius = this.Ball_Size+"px";
+		this.Element.style.backgroundColor = this.ElementColor;
+		this.Element.style.position = "absolute";
+		this.Element.style.top = this.ElementX+"px";
+		this.Element.style.left = this.ElementY+"px";
+		document.querySelector(".Container").appendChild(this.Element);
+	}
+
+	TopLeft(){
+		this.Element.style.top = parseInt(this.Element.style.top)+this.StepX+"px";
+		this.Element.style.left = parseInt(this.Element.style.left)+this.StepY+"px";
+		if(parseInt(this.Element.style.top) >= (Height-parseInt(this.Element.style.height))){
+			this.BottomLeft();
+		}
+		else if(parseInt(this.Element.style.left) >= (Width-parseInt(this.Element.style.width))){
+			this.TopRight();
+		}
+		else{
+			setTimeout(() => {
+				this.TopLeft();
+			}, VelTime)
+		}
+	}
+
+	BottomLeft(){
+		this.Element.style.top = parseInt(this.Element.style.top)-this.StepX+"px";
+		this.Element.style.left = parseInt(this.Element.style.left)+this.StepY+"px";
+		if(parseInt(this.Element.style.top) <= 0){
+			this.TopLeft();
+		}
+		
+		else if(parseInt(this.Element.style.left) >= (Width-parseInt(this.Element.style.width))){
+			this.BottomRight();
+		}
+
+		else{
+			setTimeout(() => {
+				this.BottomLeft();
+			}, VelTime)
+		}
+	}
+
+	BottomRight(){
+		this.Element.style.top = parseInt(this.Element.style.top)-this.StepX+"px";
+		this.Element.style.left = parseInt(this.Element.style.left)-this.StepY+"px";
+		if(parseInt(this.Element.style.top) <= 0){
+			this.TopRight();
+		}
+		
+		else if(parseInt(this.Element.style.left) <= 0){
+			this.BottomLeft();
+		}
+		
+		else{
+			setTimeout(() => {
+				this.BottomRight();
+			}, VelTime)
+		}
+	}
+	
+	TopRight(){
+		this.Element.style.top = parseInt(this.Element.style.top)+this.StepX+"px";
+		this.Element.style.left = parseInt(this.Element.style.left)-this.StepY+"px";
+		if(parseInt(this.Element.style.top) >= (Height-parseInt(this.Element.style.height))){
+			this.BottomRight();
+		}
+		
+		else if(parseInt(this.Element.style.left) <= 0){
+			this.TopLeft();
+		}
+
+		else{
+			setTimeout(() => {
+				this.TopRight();
+			}, VelTime)
+		}
+	}
+
+	MoveBall(){
+		if(this.ElementAction == 0){this.TopLeft();}
+		else if(this.ElementAction == 1){this.TopRight();}
+		else if(this.ElementAction == 2){this.BottomLeft();}
+		else if(this.ElementAction == 3){this.BottomRight();}
+	}
+}
+
+
+for(let i=0; i<Math.floor(Math.random() * 15)+5; i++){
+	Ball_Obj = new Bouncer();
+	Ball_Obj.Bounce();
+}
+</script>
+</html>
