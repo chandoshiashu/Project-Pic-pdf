@@ -10,7 +10,7 @@ print("Guess the Number between 0 to 10000 ")
 User_Ask = "YES"
 
 while User_Ask in "YESYEsYesyesyESyEsyeSYeS":
-    Count = 5
+    Count = 20
     Is_Find = False
     while Count >= 0:
         User_Ask = int(input("\t\t\t Enter the Number Here :-- "))
@@ -30,7 +30,7 @@ while User_Ask in "YESYEsYesyesyESyEsyeSYeS":
         elif(User_Ask == Hidden_Number):
             print(f"--------Congrats You Have Guessed The Number. The Number is {Hidden_Number}---------")
             Is_Find = True
-            Count = 1
+            Count = 0
 
         Count -= 1
 
